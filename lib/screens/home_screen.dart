@@ -2,42 +2,51 @@ import 'package:flutter/material.dart';
 import '../components/action_button/action_button_view_model.dart';
 import '../components/action_button/action_button_factory.dart';
 import 'sample_action_button_screen.dart';
+import 'sample_period_switch_screen.dart';
+import 'sample_category_icon_screen.dart';
+import 'sample_nav_icon_screen.dart';
+import 'sample_dropdown_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  static final _menuItems = <String, Widget Function()>{
+    'Buttons': () => const SampleActionButtonScreen(),
+    'Period Switch': () => const SamplePeriodSwitchScreen(),
+    'Category Icons': () => const SampleCategoryIconScreen(),
+    'Nav Icons': () => const SampleNavIconScreen(),
+    'Dropdown': () => const SampleDropdownScreen(),
+  };
+
   @override
   Widget build(BuildContext context) {
-    final buttonsMenuViewModel = ActionButtonViewModel(
-      label: 'Buttons',
-      variant: ActionButtonVariant.activate,
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => const SampleActionButtonScreen(),
-          ),
-        );
-      },
-    );
-
     return Scaffold(
       appBar: AppBar(title: const Text('Sample App')),
-      body: Padding(
+      body: ListView(
         padding: const EdgeInsets.all(24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Componentes',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            ActionButtonFactory.create(buttonsMenuViewModel),
-            // à medida que criar novos tipos de componente
-            // (ex: ListViews, Cards), adiciona um novo item aqui.
-          ],
-        ),
+        children: [
+          const Text(
+            'Componentes',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16),
+          ..._menuItems.entries.map((entry) {
+            final viewModel = ActionButtonViewModel(
+              label: entry.key,
+              variant: ActionButtonVariant.activate,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => entry.value()),
+                );
+              },
+            );
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: ActionButtonFactory.create(viewModel),
+            );
+          }),
+        ],
       ),
     );
   }
