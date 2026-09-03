@@ -6,6 +6,7 @@ import 'sample_period_switch_screen.dart';
 import 'sample_category_icon_screen.dart';
 import 'sample_nav_icon_screen.dart';
 import 'sample_dropdown_screen.dart';
+import 'sample_accordion_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
     'Category Icons': () => const SampleCategoryIconScreen(),
     'Nav Icons': () => const SampleNavIconScreen(),
     'Dropdown': () => const SampleDropdownScreen(),
+    'Accordion & Dialogs': () => const SampleAccordionScreen(),
   };
 
   @override
