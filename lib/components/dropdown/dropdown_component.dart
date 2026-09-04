@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../common/app_colors.dart';
 import 'dropdown_view_model.dart';
 
 class DropdownComponent extends StatelessWidget {
@@ -9,22 +8,25 @@ class DropdownComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
-        color: AppColors.backgroundWhiteGreen,
+        color: colors.surface,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.lightGreen),
+        border: Border.all(color: colors.primary.withOpacity(0.3)),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<int>(
           value: viewModel.selectedIndex,
-          icon: const Icon(Icons.keyboard_arrow_down),
+          icon: Icon(Icons.keyboard_arrow_down, color: colors.onSurface),
+          dropdownColor: colors.surface,
+          style: TextStyle(color: colors.onSurface, fontFamily: 'Poppins'),
           items: List.generate(
             viewModel.options.length,
                 (i) => DropdownMenuItem(value: i, child: Text(viewModel.options[i])),
           ),
-          // Delegate: repassa a escolha pra quem criou o ViewModel
           onChanged: (i) {
             if (i != null) viewModel.onOptionSelected(i);
           },

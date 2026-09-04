@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../common/app_colors.dart';
 import 'switch_toggle_view_model.dart';
 
 class SwitchToggleComponent extends StatelessWidget {
@@ -9,11 +8,13 @@ class SwitchToggleComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return Container(
       height: 61,
       padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 6),
       decoration: BoxDecoration(
-        color: AppColors.lightGreen,
+        color: colors.surface,
         borderRadius: BorderRadius.circular(22),
       ),
       child: Row(
@@ -22,21 +23,22 @@ class SwitchToggleComponent extends StatelessWidget {
           final isSelected = index == viewModel.selectedIndex;
           return Expanded(
             child: GestureDetector(
-              //delegate o componente apenas notifica, quem decide o que fazer com a seleção é quem criou o viewmodel.
               onTap: () => viewModel.onOptionSelected(index),
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 6),
                 height: 51,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: isSelected
-                      ? AppColors.mainGreen
-                      : AppColors.lightGreen,
+                  color: isSelected ? colors.primary : colors.surface,
                   borderRadius: BorderRadius.circular(18),
                 ),
                 child: Text(
                   viewModel.options[index],
-                  style: const TextStyle(fontFamily: 'Poppins', fontSize: 15),
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 15,
+                    color: colors.onSurface,
+                  ),
                 ),
               ),
             ),

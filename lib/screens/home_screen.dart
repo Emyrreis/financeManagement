@@ -9,9 +9,11 @@ import 'sample_dropdown_screen.dart';
 import 'sample_accordion_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final VoidCallback onToggleTheme;
 
-  static final _menuItems = <String, Widget Function()>{
+  const HomeScreen({super.key, required this.onToggleTheme});
+
+  static final Map<String, Widget Function()> _menuItems = {
     'Buttons': () => const SampleActionButtonScreen(),
     'Period Switch': () => const SamplePeriodSwitchScreen(),
     'Category Icons': () => const SampleCategoryIconScreen(),
@@ -23,7 +25,15 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Sample App')),
+      appBar: AppBar(
+        title: const Text('Sample App'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.brightness_6),
+            onPressed: onToggleTheme,
+          ),
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.all(24),
         children: [

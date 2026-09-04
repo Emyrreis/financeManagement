@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../common/app_colors.dart';
 import 'accordion_view_model.dart';
 
 class AccordionComponent extends StatelessWidget {
@@ -9,28 +8,30 @@ class AccordionComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GestureDetector(
-          onTap: viewModel.onTap, // Delegate: abrir/fechar é decidido por quem criou o ViewModel
+          onTap: viewModel.onTap,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 child: Text(
                   viewModel.question,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'LeagueSpartan',
                     fontSize: 16,
-                    color: AppColors.lettersIcons,
+                    color: colors.onSurface,
                   ),
                 ),
               ),
               AnimatedRotation(
-                turns: viewModel.isExpanded ? 0.5 : 0, // gira a seta 180°
+                turns: viewModel.isExpanded ? 0.5 : 0,
                 duration: const Duration(milliseconds: 200),
-                child: const Icon(Icons.keyboard_arrow_down, size: 26),
+                child: Icon(Icons.keyboard_arrow_down, size: 26, color: colors.onSurface),
               ),
             ],
           ),
@@ -41,16 +42,16 @@ class AccordionComponent extends StatelessWidget {
             margin: const EdgeInsets.only(top: 17),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: AppColors.lightGreen,
+              color: colors.surface,
               borderRadius: BorderRadius.circular(15),
             ),
             child: Text(
               viewModel.answer,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w300,
                 fontSize: 13,
-                color: AppColors.lettersIcons,
+                color: colors.onSurface,
               ),
             ),
           ),

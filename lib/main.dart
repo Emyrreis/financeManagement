@@ -1,26 +1,35 @@
 import 'package:flutter/material.dart';
+import 'common/app_theme.dart';
 import 'screens/home_screen.dart';
-import 'common/app_colors.dart';
 
-void main() {
-  runApp(const SampleApp());
+void main() => runApp(const SampleApp());
+
+class SampleApp extends StatefulWidget {
+  const SampleApp({super.key});
+
+  @override
+  State<SampleApp> createState() => _SampleAppState();
 }
 
-class SampleApp extends StatelessWidget {
-  const SampleApp({super.key});
+class _SampleAppState extends State<SampleApp> {
+  ThemeMode _themeMode = ThemeMode.light;
+
+  void _toggleTheme() {
+    setState(() {
+      _themeMode =
+      _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sample App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Poppins',
-        colorSchemeSeed: AppColors.mainGreen,
-        scaffoldBackgroundColor: Colors.white,
-        useMaterial3: true,
-      ),
-      home: const HomeScreen(),
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: _themeMode,
+      home: HomeScreen(onToggleTheme: _toggleTheme),
     );
   }
 }
