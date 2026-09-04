@@ -1,17 +1,17 @@
-# financemanagement
+Finance Management — Sample App
 
-A new Flutter project.
+Projeto acadêmico da disciplina Mobile 2, desenvolvido em Flutter/Dart dentro do Android Studio. O objetivo é construir uma Sample App: uma aplicação de referência que reúne, em telas separadas, todos os componentes de interface baseados em um Design System do Figma.
 
-## Getting Started
+Design System de referência
+O projeto usa como base o kit Finance Management Mobile App UI/UX Kit (Figma, Community), replicando cores, tipografia e componentes definidos na página Design System do arquivo.
 
-This project is a starting point for a Flutter application.
+Arquitetura
+O projeto segue o padrão de projeto Factory, combinado com ViewModel e Delegate, para manter a criação e o comportamento dos componentes organizados e desacoplados da tela:
 
-A few resources to get you started if this is your first Flutter project:
+ViewModel → Factory → Component → Widget Flutter
+ViewModel: guarda os dados e o estado de um componente (texto, estado habilitado/selecionado, etc). Não sabe desenhar nada na tela.
+Factory: centraliza a decisão de qual widget construir a partir do ViewModel.
+Component: o widget Flutter em si — o build() fica enxuto, sem lógica de negócio.
+Delegate: ações como clique não são resolvidas dentro do componente; são repassadas (delegadas) para uma função fornecida por quem criou o ViewModel.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Toda classe base de ViewModel é abstrata — não pode ser instanciada diretamente, apenas estendida por um ViewModel concreto.
