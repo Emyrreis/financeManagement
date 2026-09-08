@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
-import 'app_theme.dart';
 
-//estilos de texto
 class AppTextStyles {
   AppTextStyles._();
 
   static const TextStyle subtitle = TextStyle(
     fontFamily: 'Poppins',
-    fontWeight: FontWeight.w500, //médio
+    fontWeight: FontWeight.w500,
     fontSize: 15,
     color: AppColors.lettersIcons,
   );
 
   static const TextStyle title = TextStyle(
     fontFamily: 'Poppins',
-    fontWeight: FontWeight.w600, //semibold
+    fontWeight: FontWeight.w600,
     fontSize: 20,
     height: 22 / 20,
     color: AppColors.lettersIcons,
@@ -23,7 +21,7 @@ class AppTextStyles {
 
   static const TextStyle paragraph = TextStyle(
     fontFamily: 'Poppins',
-    fontWeight: FontWeight.w300, //light
+    fontWeight: FontWeight.w300,
     fontSize: 13,
     color: AppColors.darkModeBlack,
   );

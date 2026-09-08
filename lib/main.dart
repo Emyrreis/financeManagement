@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'common/app_theme.dart';
 import 'screens/home_screen.dart';
 
-void main() => runApp(const SampleApp());
+void main() {
+  runApp(const SampleApp());
+}
 
 class SampleApp extends StatefulWidget {
   const SampleApp({super.key});
@@ -16,20 +18,23 @@ class _SampleAppState extends State<SampleApp> {
 
   void _toggleTheme() {
     setState(() {
-      _themeMode =
-      _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+      _themeMode = _themeMode == ThemeMode.light
+          ? ThemeMode.dark
+          : ThemeMode.light;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sample App',
       debugShowCheckedModeBanner: false,
+      title: 'Finance Management',
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: _themeMode,
-      home: HomeScreen(onToggleTheme: _toggleTheme),
+      home: HomeScreen(
+        onToggleTheme: _toggleTheme,
+      ),
     );
   }
 }
