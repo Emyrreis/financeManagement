@@ -10,7 +10,7 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.lightBackground,
     colorScheme: const ColorScheme.light(
       primary: AppColors.mainGreen,
-      onPrimary: AppColors.lettersIcons, // texto escuro sobre botão verde, igual ao Figma
+      onPrimary: AppColors.lettersIcons, //texto escuro sobre botao verde
       surface: AppColors.lightSurface,
       onSurface: AppColors.lightTextPrimary,
     ),
@@ -23,7 +23,7 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.darkBackground,
     colorScheme: const ColorScheme.dark(
       primary: AppColors.mainGreen,
-      onPrimary: AppColors.lettersIcons, // mesmo texto escuro, mesmo no dark mode (confirmado no Figma)
+      onPrimary: AppColors.lettersIcons, //texto escuro mesmo no dark mode
       surface: AppColors.darkSurface,
       onSurface: AppColors.darkTextPrimary,
     ),

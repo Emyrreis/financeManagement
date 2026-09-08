@@ -6,23 +6,37 @@ enum FunctionalIconType {
   loadingCheck,
   loadingError,
   navigation,
-  checkbox,
   radio,
+  checkbox,
+  notificationBell,
+  searchAction,
+  calendarAction,
+  cameraAction,
+  micAction,
+  sendAction,
   eyesPass,
   toggle,
-  calendar,
+  calendarDate,
 }
 
 class FunctionalIconViewModel {
   final FunctionalIconType type;
+
+  final IconData? icon;
+
   final bool active;
+
+  final String? dayLabel;
+
   final bool obscureText;
   final bool enabled;
   final VoidCallback? onTap;
 
   const FunctionalIconViewModel({
     required this.type,
+    this.icon,
     this.active = false,
+    this.dayLabel,
     this.obscureText = true,
     this.enabled = true,
     this.onTap,
